@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Crime-Spot</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- Popper JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+		*{
+			font-family: 'Montserrat', sans-serif;
+		}
+
+		a{
+			text-decoration: none;
+		}
+
+		body{
+			/*background-color: #FFFBEC;*/
+			background-image: url('../static/images/back2.png');
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.navbar{
+			background-color: transparent;
+			padding: 10px;
+		}
+
+		.navbar-brand{
+			color: white;
+			font-weight: 700;
+			font-size: 36px;
+		}
+
+		.navbar-toggler{
+			background-color:#FFC000 !important;
+		}
+
+		.fa-bars{
+			color:#3B4954;
+			font-size: 28px;
+		}
+
+		.nav-link{
+			color: #3B4954;
+			font-weight: 600;
+			font-size: 18px;
+			border-radius: 50px;
+		}
+
+		.nav-link:hover{
+			color: white;
+			font-weight: 600;
+			font-size: 18px;
+			border-radius: 50px;
+
+		}
+
+		.col1{
+			padding: 20px;
+			padding-top: 2%;
+		}
+
+
+
+		.col2{
+			padding: 20px;
+			padding-top: 12%;
+		}
+
+		.carousel-indicators li{
+			color:#FFC000;
+		}
+
+		.h3{
+			font-size: 46px;
+			font-weight: 700;
+			color: #FFC000;
+
+		}
+
+		.p1{
+			font-size: 18px;
+			font-weight: 600;
+			color: #ffffff;
+
+		}
+
+		/**..label11{
+			font-size: 16px;
+			font-weight: 600;
+			color:#3B4954;
+			padding-left: 15px;
+		}
+
+		.inputText {
+		  	
+			border-top:none;
+			border-left:none;
+			border-right: none;
+			border-bottom: 1px solid #3B4954;
+			border-radius: 0;
+			outline: none;
+		}**/
+
+		.field {
+		  display: flex;
+		  flex-flow: column-reverse;
+		  margin-bottom: 1em;
+		}
+		/**
+		* Add a transition to the .label1 and .input1.
+		* I'm not even sure that touch-action: manipulation works on
+		* .input1s, but hey, it's new and cool and could remove the 
+		* pesky delay.
+		*/
+		.label1, .input1 {
+		  transition: all 0.2s;
+		  touch-action: manipulation;
+		}
+
+		.input1 {
+		  border: 0;
+		  border-bottom: 1px solid #3B4954;
+		  font-family: inherit;
+		  -webkit-appearance: none;
+		  border-radius: 0;
+		  padding: 0;
+		  cursor: text;
+		  background-color: transparent;
+		}
+
+		.input1:focus {
+		  outline: 0;
+		  border-bottom: 1px solid #3B4954;
+		}
+
+		.label1 {
+		  font-size: 12px;
+		  font-weight: 600;
+		  color:#3B4954;
+		  padding-left: 15px;
+		  padding-bottom: 10px;
+		}
+
+		.p3{
+		  font-size: 16px;
+		  font-weight: 600;
+		  color:#3B4954;	
+		}
+		/**
+		* Translate down and scale the .label1 up to cover the placeholder,
+		* when following an .input1 (with placeholder-shown support).
+		* Also make sure the .label1 is only on one row, at max 2/3rds of the
+		* field—to make sure it scales properly and doesn't wrap.
+		*/
+		.input1:placeholder-shown + .label1 {
+		  cursor: text;
+		  max-width: 66.66%;
+		  white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  transform-origin: left bottom;
+		  transform: translate(0, 2.125rem) scale(1.5);
+		}
+		/**
+		* By default, the placeholder should be transparent. Also, it should 
+		* inherit the transition.
+		*/
+		::-webkit-input-placeholder {
+		  opacity: 0;
+		  transition: inherit;
+		  color:transparent;
+		}
+		/**
+		* Show the placeholder when the .input1 is focused.
+		*/
+		.input1:focus::-webkit-.input1-placeholder {
+		  opacity: 1;
+		}
+		/**
+		* When the element is focused, remove the .label1 transform.
+		* Also, do this when the placeholder is _not_ shown, i.e. when 
+		* there's something in the .input1 at all.
+		*/
+		.input1:not(:placeholder-shown) + .label1,
+		.input1:focus + .label1 {
+		  transform: translate(0, 0) scale(1);
+		  cursor: pointer;
+		}
+
+		.login-btn{
+			width: 100%;
+			text-align: center;
+			font-size: 16px;
+		 	font-weight: 600;
+		  	color:white;
+		  	background-color: #3B4954;
+		  	border:none;
+		}
+
+		.login-btn:hover{
+			background-color: #20272d;
+		  	border:none;
+		  	color:white;
+		}
+
+
+		#footer{
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+			background-color: black;
+			padding: 5px;
+		}
+
+		.p2{
+			font-size: 16px; 
+			color: white; 
+			padding-top: 10px;
+		}
+	</style>
+
+	
+</head>
+<body class="body">
+
+	<nav class="navbar navbar-expand-md">
+		<div class="container">
+		  <!-- Brand -->
+		  <a class="navbar-brand" href="{{ url_for('index') }}"><img src="../static/images/logo-transparent.png" height="70px" width="auto"></a>
+
+		  <!-- Toggler/collapsibe Button -->
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		    <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+		  </button>
+
+		  <!-- Navbar links -->
+		  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+		    <ul class="navbar-nav ml-auto" align="center">
+		      <li class="nav-item">
+		        <a class="nav-link" href="#" style="padding: 10px 30px;"></a>
+		      </li>
+		    </ul>
+		  </div>
+	    </div>
+	</nav>
+
+	<section class="section1">
+		<div class="container-fluid cont1">
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-5 col1" align="center">
+					<h3 class="h3">Data-Driven
+					  <span style="color:#FFC000;" 
+					     class="txt-rotate"
+					     data-period="2000"
+					     data-rotate='[ "Policing", "Patrolling","Prediction"]'></span>
+					</h3>
+					<p class="p1">Forecast crime locations and gain actionable insights 24*7</p>
+					<img class="image1" src="../static/images/slider_image2.png" alt="Slider Image" width="80%" height="auto">
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3 col2">
+					<a href="{{ url_for('dashboard') }}" class="btn btn-md login-btn">Go to Dashboard</a><br><br>
+					<a href="{{ url_for('prediction') }}" class="btn btn-md login-btn" style="background-color: #FFC000;color: black">Forecast Crime Hotspots<br>in Google Map</a>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+		</div>
+	</section>
+	<section id="footer" align="center">
+		<footer>
+			<p class="p2">© Copyright 2020 Crime-Spot under development. All rights reserved.</p>
+		</footer>
+	</section>
+		<!--div class="container">
+			<div class="row">
+				<div class="col-sm-6" align="left">
+					
+				</div>
+				<div class="col-sm-6" align="right">
+					<img src="../static/images/Crime-Spot-McMarvin-Logo-White.png" height="50px">
+				</div>
+			</div>
+		</div-->
+	
+	<script type="text/javascript">
+		var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 10000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #FFC000 }";
+  document.body.appendChild(css);
+};
+	</script>
+</body>
+</html>

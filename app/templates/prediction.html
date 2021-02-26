@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF=8">
+	<title>Crime-Spot</title>
+	<!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../style.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&libraries=visualization&callback=initMap">
+    </script>
+ 
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 60%;
+        width: 80%;
+        right:10%;
+        left: 10%;
+        position: relative;
+        margin-top: 2%;
+        border-top: 30px solid white;
+        border-right: 30px solid white;
+        border-left: 30px solid white;
+        border-bottom: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        box-shadow: 0px -4px 10px -3px rgba(0,0,0,0.75);
+      }
+
+      #table{
+        right:10%;
+        left: 10%;
+        position: relative;
+        border-bottom: 30px solid white;
+        border-right: 30px solid white;
+        border-left: 30px solid white;
+        border-top: none;
+        border-bottom-left-radius: 10px !important;
+        border-bottom-right-radius: 10px !important;
+        margin-bottom: 2%;
+        box-shadow: 0px 4px 10px -3px rgba(0,0,0,0.75);
+      }
+
+      *{
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      a{
+        text-decoration: none;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+
+      .navbar{
+        background-color: #3B4954;
+        padding: 10px;
+      }
+
+      .navbar-brand{
+        color: white;
+        font-weight: 700;
+        font-size: 36px;
+      }
+
+      .navbar-toggler{
+        background-color:#FFC000 !important;
+      }
+
+      .fa-bars{
+        color:#3B4954;
+        font-size: 28px;
+      }
+
+      .nav-link{
+        color: white;
+        font-weight: 500;
+        font-size: 20px;
+        padding: 5px 20px;
+        margin-left: 20px;
+      }
+
+      .nav-link:hover{
+        color: #FFC000;
+      }
+
+      .section1{
+
+      }
+      #footer{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: black;
+      padding: 5px;
+    }
+
+    .p2{
+      font-size: 16px; 
+      color: white; 
+      padding-top: 10px;
+    }
+    </style>
+</head>
+{% if background_color == 'morning' %}
+<body id="body" style="background-image:linear-gradient(to bottom, #82addb 0%,#ebb2b1 100%); background-repeat: no-repeat; background-size: 100% 100%;" align="center">
+{% elif background_color == 'afternoon' %}
+<body id="body" style="background-image:linear-gradient(to bottom, #154277 0%,#576e71 30%,#e1c45e 70%,#b26339 100%); background-repeat: no-repeat; background-size:  100% 100%;" align="center">
+{% else %}
+<body id="body" style="background-image:linear-gradient(to bottom, #020111 10%,#3a3a52 100%); background-repeat: no-repeat; background-size:  100% 100%;" align="center">
+{% endif %}
+  <nav class="navbar navbar-expand-md">
+    <div class="container">
+      <!-- Brand -->
+      <a class="navbar-brand" href="{{ url_for('index') }}"><img src="../static/images/logo-transparent.png" height="70px" width="auto"></a>
+
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav ml-auto" align="center">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('prediction') }}">Forecast Hotspot</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+ 
+    
+    
+    <div id="map" style=""></div>
+    <script> 
+
+      // This example requires the Visualization library. Include the libraries=visualization
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+
+      var map, heatmap;
+ 
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: {lat: 37.775, lng: -122.434},
+          mapTypeId: 'satellite'
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+      }
+
+      function toggleHeatmap() {
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
+
+      
+     
+
+      // Heatmap data
+      function getPoints() {
+        return [{{crime_horizon}}];
+      }
+    </script>
+      <div id="table" style="width: 80%">
+        <table border=1 cellpadding="1" style="width: 100%; background-color:black;">
+            <tr>
+                <td><p style="text-align:center">
+                  <form id='submit_params' method="POST" action="{{ url_for('prediction') }}">
+                    <div class="slidecontainer" style='width: 100%;'>
+                    {% if background_color == 'morning' %}
+                    <label><font color="white">Use slider to forecast the crime locations: <span id="label_slider_value">{{date_horizon}} Morning</span></font></label><BR>
+                    {% elif background_color == 'afternoon' %}
+                    <label><font color="white">Use slider to forecast the crime locations: <span id="label_slider_value">{{date_horizon}} Afternoon</span></font></label><BR>
+                    {% else %}
+                    <label><font color="white">Use slider to forecast the crime locations: <span id="label_slider_value">{{date_horizon}} Night</span></font></label><BR>
+                    {% endif %}
+                    <input type="range" min="1" max="210" value="{{current_value}}" name="slider_crime_horizon" 
+                      id="slider_crime_horizon" step="1" style='width: 100%;'>
+                  </div>
+                </form>
+             </td>
+          </tr>
+      </table>
+    </div>
+    <section id="footer" align="center">
+        <div class="container">
+          <footer>
+            <p class="p2">© Copyright 2020 Crime-Spot under development. All rights reserved.</p>
+          </footer>
+        </div>
+    </section>
+
+     <script>
+        // Slider logic
+        var slider1 = document.getElementById("slider_crime_horizon");
+        var output1 = document.getElementById("label_slider_value");
+
+          slider1.onmouseup = function () {
+            document.getElementById("submit_params").submit();
+          }
+
+        slider1.oninput = function() {
+            var horizon_date = new Date();
+            horizon_date.setDate(horizon_date.getDate() + Math.trunc(parseInt(this.value)/3));
+            output1.innerHTML = (horizon_date.getMonth()+1) + "/" + horizon_date.getDate() + "/" + horizon_date.getFullYear(); //this.value;
+
+            if ((parseInt(this.value)/3) % 3 == 0) {
+              //time_segment_image.src = "static/images/morning.jpg"; 
+              document.getElementById('body').style.background = "linear-gradient(to bottom, #82addb 0%,#ebb2b1 100%)";
+            }
+            else if ((parseInt(this.value)/3) % 3 == 1) {
+              //time_segment_image.src = "static/images/afternoon.jpg";
+              document.getElementById('body').style.background = "linear-gradient(to bottom, #154277 0%,#576e71 30%,#e1c45e 70%,#b26339 100%)";
+            }
+            else {
+              //time_segment_image.src = "static/images/night.jpg"; 
+              document.getElementById('body').style.background = "linear-gradient(to bottom, #020111 10%,#3a3a52 100%)";
+            }
+        }
+ 
+     </script>
+</body>
+</html>
+
+
+

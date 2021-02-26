@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+	font-family: 'Montserrat', sans-serif;
+}
+
+a{
+	text-decoration: none;
+}
+
+body{
+	/*background-color: #FFFBEC;*/
+	background-image: url('./images/back2.png');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.navbar{
+	background-color: transparent;
+	padding: 10px;
+}
+
+.navbar-brand{
+	color: white;
+	font-weight: 700;
+	font-size: 36px;
+}
+
+.navbar-toggler{
+	background-color:#FFC000 !important;
+}
+
+.fa-bars{
+	color:#3B4954;
+	font-size: 28px;
+}
+
+.nav-link{
+	color: #3B4954;
+	font-weight: 500;
+	font-size: 20px;
+	padding: 5px 20px;
+}
+
+.nav-link:hover{
+	color: #FFC000;
+}
+
+.col1{
+	padding: 20px;
+	padding-top: 12%;
+}
+
+/**..label11{
+	font-size: 16px;
+	font-weight: 600;
+	color:#3B4954;
+	padding-left: 15px;
+}
+
+.inputText {
+  	
+	border-top:none;
+	border-left:none;
+	border-right: none;
+	border-bottom: 1px solid #3B4954;
+	border-radius: 0;
+	outline: none;
+}**/
+
+.field {
+  display: flex;
+  flex-flow: column-reverse;
+  margin-bottom: 1em;
+}
+/**
+* Add a transition to the .label1 and .input1.
+* I'm not even sure that touch-action: manipulation works on
+* .input1s, but hey, it's new and cool and could remove the 
+* pesky delay.
+*/
+.label1, .input1 {
+  transition: all 0.2s;
+  touch-action: manipulation;
+}
+
+
+/**
+* Translate down and scale the .label1 up to cover the placeholder,
+* when following an .input1 (with placeholder-shown support).
+* Also make sure the .label1 is only on one row, at max 2/3rds of the
+* field—to make sure it scales properly and doesn't wrap.
+
+/**
+* By default, the placeholder should be transparent. Also, it should 
+* inherit the transition.
+*/
+::-webkit-input-placeholder {
+  opacity: 0;
+  transition: inherit;
+  color:transparent;
+}
+/**
+* Show the placeholder when the .input1 is focused.
+*/
+.input1:focus::-webkit-.input1-placeholder {
+  opacity: 1;
+}
+/**
+* When the element is focused, remove the .label1 transform.
+* Also, do this when the placeholder is _not_ shown, i.e. when 
+* there's something in the .input1 at all.
+*/
+.input1:not(:placeholder-shown) + .label1,
+.input1:focus + .label1 {
+  transform: translate(0, 0) scale(1);
+  cursor: pointer;
+}
+
+.login-btn{
+	width: 100%;
+	text-align: center;
+	font-size: 16px;
+ 	font-weight: 600;
+  	color:white;
+  	background-color: #3B4954;
+  	border:none;
+}
+
+.login-btn:hover{
+	background-color: #20272d;
+  	border:none;
+}
