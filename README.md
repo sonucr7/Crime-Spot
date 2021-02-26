@@ -2,7 +2,7 @@
 
 **Crime-Spot is a data-driven platform for monitoring, graphing, and modeling crime risks to identify the possible hotspots/clusters on the Google Map in the San Francisco area based on the existing or historical crime data.**
 
-![PySpark](https://i.ibb.co/PNgMCXz/landing-page-policing.png)
+**SEE LIVE APP HERE: http://crime-spot-live.herokuapp.com/ 😀**
 
 The model is trained using the data available on San Francisco Data Portal over a period of 10 years. Find more details about the data here: https://data.sfgov.org/Public-Safety/SF-Crime-Heat-Map/q6gg-sa2p/data
 
